@@ -11,18 +11,37 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            
+            ProductManager productManager = new ProductManager(new EfProductDal());
 
-            ProductManager productManager2 = new ProductManager(new EfProductDal());
+            var result = productManager.GetProductDetails();
 
-            foreach (var product in productManager2.GetProductDetails())
+            if (result.Success==true)
             {
-                Console.WriteLine(product.ProductName+" / "+product.CategoryName);
+                foreach (var product in result.Data)
+                {
+                    Console.WriteLine(product.ProductName+ " / " + product.CategoryName);
+                }
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
             }
 
+
+            //GetProductDetailsTest();
             //ProductTest();
             //IoC
             //CategoryTest();
+        }
+
+        private static void GetProductDetailsTest()
+        {
+            ProductManager productManager2 = new ProductManager(new EfProductDal());
+
+            foreach (var product in productManager2.GetProductDetails().Data)
+            {
+                Console.WriteLine(product.ProductName + " / " + product.CategoryName);
+            }
         }
 
         private static void CategoryTest()
@@ -38,12 +57,12 @@ namespace ConsoleUI
         {
             ProductManager productManager = new ProductManager(new EfProductDal());
 
-            foreach (var product in productManager.GetAllByCategoryId(2))
+            foreach (var product in productManager.GetAllByCategoryId(2).Data)
             {
                 Console.WriteLine(product.ProductName);
             }
             Console.WriteLine("-----------");
-            foreach (var product2 in productManager.GetByUnitPrice(20, 80))
+            foreach (var product2 in productManager.GetByUnitPrice(20, 80).Data)
             {
                 Console.WriteLine(product2.ProductName);
             }
