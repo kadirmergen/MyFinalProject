@@ -5,13 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Abstract\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Autofac" Version="7.0.1" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Autofac.Extras.DynamicProxy" Version="7.1.0" />
     <PackageReference Include="FluentValidation" Version="11.5.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
